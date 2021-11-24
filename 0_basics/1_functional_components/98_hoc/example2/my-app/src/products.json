@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Apple Macbook",
+        "style": "Computer",
+        "price": "2400",
+        "description": "Apple Macbook Pro i9",
+        "isFreeShipping": true,
+        "sku": "adfafdasfdasfasfasfsa"
+    },
+    {
+        "title": "Microsoft Surface",
+        "style": "Computer",
+        "price": "1900",
+        "description": "Microsoft Surface Pro i9",
+        "isFreeShipping": true,
+        "sku": "iorjioeuroiwuoiuerwrr"
+    },
+    {
+        "title": "Dell Precision",
+        "style": "Computer",
+        "price": "2300",
+        "description": "Dell Precision 9960",
+        "isFreeShipping": true,
+        "sku": "mmbnmbmnbmnbmnbbm"
+    }
+]

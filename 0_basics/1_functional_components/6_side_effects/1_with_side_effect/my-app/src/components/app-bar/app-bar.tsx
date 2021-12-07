@@ -3,6 +3,8 @@ import { AppBar, Box, Button, IconButton, Toolbar } from "@mui/material";
 import { useEffect } from "react";
 
 const MyAppBar = (props: any) => {
+  console.log("app-bar", "start render", "props: ", props);
+
   let buttons = null;
 
   const onLogoutClick = () => {
@@ -15,10 +17,15 @@ const MyAppBar = (props: any) => {
 
   useEffect(() => {
     console.log("app-bar", "useEffect without dependency");
-  }, []);
+  }); // <----- no parameter is no-dependency => run EVERY render !!!
 
   useEffect(() => {
-    console.log("app-bar", "useEffect", props);
+    console.log("app-bar", "useEffect with empty dependency");
+  }, []); // <----- [] is empty-dependency => run only ONCE !!!
+
+  useEffect(() => {
+    console.log("app-bar", "useEffect - props has changed", props);
+    console.log("app-bar", "condition - isLogged: ", props.isLogged);
     if (props && props.isLogged && props.onLogout) {
       buttons = (
         <Button color="inherit" onClick={onLogoutClick}>
@@ -26,7 +33,7 @@ const MyAppBar = (props: any) => {
         </Button>
       );
     }
-  }, [props]);
+  }, [props]); // <---- [props] is dependency => each time props are changed !!!
 
   console.log("app-bar", "return JSX", "props: ", props);
   return (

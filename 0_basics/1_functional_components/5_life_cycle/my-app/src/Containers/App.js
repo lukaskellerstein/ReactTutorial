@@ -12,7 +12,7 @@ import "./App.css";
 /* --------------------------------------------------------- */
 
 function App() {
-  console.log("App - render");
+  console.log("App - render - start");
 
   // -----------------
   // LOCAL STATE / REACT HOOK - useState()
@@ -29,11 +29,10 @@ function App() {
 
   // -----------------
   // LIFECYCLE HOOKS / REACT HOOK - useEffect()
-  // lets us express different kinds of side effects AFTER A COMPONENT RENDERS !!!
+  // runs AFTER A COMPONENT RENDERS !!!
   // Some effects might require cleanup so they return a function
-  //
-  // Similar to componentDidMount, componentDidUpdate
   // -----------------
+  // like componentDidUpdate
   useEffect(() => {
     console.log("App - useEffect without dependency");
 
@@ -41,14 +40,27 @@ function App() {
     return () => {
       console.log("App - useEffect without dependency - cleanup");
     };
-  }); // <---- no-depencies, so it is run only ONCE after component is rendered
+  }); // <---- no-depencies, so it is run after EVERY render !!
 
+  // like componentDidMount
   useEffect(() => {
-    console.log("App - useEffect - state has changed");
+    console.log("App - useEffect with empty dependency");
 
     // Cleanup - Similar to componentWillUnmount
     return () => {
-      console.log("App - useEffect - state has changed - cleanup");
+      console.log("App - useEffect without dependency - cleanup");
+    };
+  }, []); // <---- EMPTY depency, so it is run ONLY ONCE !!
+
+  // like componentDidUpdate
+  useEffect(() => {
+    console.log("App - useEffect with dependency - state has changed");
+
+    // Cleanup - Similar to componentWillUnmount
+    return () => {
+      console.log(
+        "App - useEffect with dependency - state has changed - cleanup"
+      );
     };
   }, [myState]); // <---- [myState] is dependency, it means this useEffect will be run each time state is changed !!!
 
@@ -60,7 +72,13 @@ function App() {
     // WARNING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // This method REPLACES the whole state
     // WARNING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    console.log(myState);
+    console.log(
+      "------------------------- CLICK in App.js ------------------------"
+    );
+    console.log("Changing the state", myState);
+    console.log(
+      "-------------------------------------------------------------------"
+    );
     setMyState({
       ...myState, //have to specify the rest of the state
       showCars: !myState.showCars,
@@ -75,6 +93,14 @@ function App() {
     // WARNING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     // This method REPLACES the whole state
     // WARNING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    console.log(
+      "------------------------- DELETE CLICK in App.js ------------------------"
+    );
+    console.log("Changing the state", myState);
+    console.log(
+      "-------------------------------------------------------------------"
+    );
     setMyState({
       ...myState, //have to specify the rest of the state
       cars: copyArr,
@@ -94,6 +120,15 @@ function App() {
     //  WARNING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     //  This method DOESN'T REPLACES the whole state
     //  WARNING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+    console.log(
+      "------------------------- CHANGE CLICK in App.js ------------------------"
+    );
+    console.log("Changing the state", myState);
+    console.log(
+      "-------------------------------------------------------------------"
+    );
+
     setMyState({
       ...myState, //have to specify the rest of the state
       cars: changedCars,
@@ -112,6 +147,7 @@ function App() {
     );
   }
 
+  console.log("App - render - return JSX");
   return (
     <div className="App">
       <Header clickHandler={clickHandler} />

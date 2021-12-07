@@ -5,13 +5,16 @@ import { useState } from "react";
 import "./App.scss";
 
 function App() {
+  console.log("app", "start render");
   const [isLogged, setLogged] = useState(false);
 
   const onLogin = (isLogged: boolean) => {
+    console.log("app", "onLogin");
     setLogged(isLogged);
   };
 
   const whatToShow = () => {
+    console.log("app", "condition - isLogged: ", isLogged);
     if (isLogged) {
       return <h1>Hello</h1>;
     } else {
@@ -23,6 +26,7 @@ function App() {
     }
   };
 
+  console.log("app", "return JSX", "state: ", isLogged);
   return (
     <div className="App">
       <MyAppBar isLogged={isLogged} onLogout={onLogin} />

@@ -9,10 +9,14 @@ import { useRef } from "react";
 import "./login-form.scss";
 
 const LoginForm = (props: any) => {
+  console.log("login-form", "start render", "props: ", props);
+
   const emailRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
 
   const onLoginClick = () => {
+    console.log("login-form", "onLoginClick");
+
     const emailValue = emailRef?.current?.value;
     const passwordValue = passwordRef?.current?.value;
 
@@ -30,6 +34,7 @@ const LoginForm = (props: any) => {
     }
   };
 
+  console.log("login-form", "return JSX", "props: ", props);
   return (
     <Card sx={{ maxWidth: 275 }}>
       <CardContent className="card-inputs">

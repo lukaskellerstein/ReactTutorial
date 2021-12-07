@@ -9,6 +9,8 @@ import { useEffect, useRef } from "react";
 import "./login-form.scss";
 
 const LoginForm = (props: any) => {
+  console.log("login-form", "start render", "props: ", props);
+
   const emailRef = useRef<HTMLInputElement>();
   const passwordRef = useRef<HTMLInputElement>();
 
@@ -34,11 +36,15 @@ const LoginForm = (props: any) => {
 
   useEffect(() => {
     console.log("login-form", "useEffect without dependency");
-  }, []);
+  }); // <----- no parameter is no-dependency => run EVERY render !!!
 
   useEffect(() => {
-    console.log("login-form", "useEffect", props);
-  }, [props]);
+    console.log("login-form", "useEffect with empty dependency");
+  }, []); // <----- [] is empty-dependency => run only ONCE !!!
+
+  useEffect(() => {
+    console.log("login-form", "useEffect - props has changed - ", props);
+  }, [props]); // <---- [props] is dependency => each time props are changed !!!
 
   console.log("login-form", "return JSX", "props: ", props);
   return (

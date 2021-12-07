@@ -8,6 +8,7 @@ const MyComponent = (props) => {
   });
 
   const buttonClick = () => {
+    // get the Ref value
     const val = inputRef.current.value;
 
     setState({

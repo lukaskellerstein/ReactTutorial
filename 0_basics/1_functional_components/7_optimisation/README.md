@@ -8,3 +8,5 @@
   - useMemo
   - useCallback
   - useRef
+  - Custom hooks
+  - useReducer

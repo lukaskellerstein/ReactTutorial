@@ -27,12 +27,12 @@ function App() {
   };
 
   const onSidebarMenuClicked = (pageName: any) => {
+    visitedPages += 1;
     setSelectedPage(pageName);
   };
 
   let whatToShow = null;
   if (isLogged) {
-    visitedPages += 1;
     whatToShow = (
       <>
         <div className="sidebar">

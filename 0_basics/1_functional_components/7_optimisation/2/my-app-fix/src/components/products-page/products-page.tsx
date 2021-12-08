@@ -1,9 +1,9 @@
+import { ApiError } from "@business/api-errors";
+import { Logger } from "@business/logger";
+import { CarDTO } from "@dto/Car.dto";
 import { Text } from "@fluentui/react-northstar";
+import useErrors from "@hooks/useErrors";
 import { memo, useCallback, useEffect, useMemo, useReducer } from "react";
-import { ApiError } from "../../business/api-errors";
-import { Logger } from "../../business/logger";
-import { CarDTO } from "../../DTOs/Car.dto";
-import useErrors from "../../hooks/useErrors";
 import ProductDetailForm from "./product-detail-form/product-detail-form";
 import ProductList from "./product-list/product-list";
 import "./products-page.scss";

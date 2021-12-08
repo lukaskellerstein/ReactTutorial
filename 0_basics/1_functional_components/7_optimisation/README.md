@@ -1,6 +1,9 @@
 # Excersise
 
 - Test knowledge and usage about React Hooks
+
+Example 1:
+
 - You will need to use:
   - useState
   - useEffect
@@ -8,5 +11,8 @@
   - useMemo
   - useCallback
   - useRef
-  - Custom hooks
-  - useReducer
+
+Example 2:
+
+- Custom hooks
+- useReducer

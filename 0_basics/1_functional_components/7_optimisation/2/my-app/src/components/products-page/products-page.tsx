@@ -123,11 +123,6 @@ const ProductsPage = (props: ProductPageProps) => {
   logger.logComponent("ends");
   return (
     <div className={props.theme + "-pp"}>
-      {
-        // -----------------------------------------------------
-        // Fix 3. - conditional rendering
-        // -----------------------------------------------------
-      }
       {errorState.hasError && (
         <ErrorModal
           opened={errorState.hasError}

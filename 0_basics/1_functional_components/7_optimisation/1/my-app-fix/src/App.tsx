@@ -35,12 +35,12 @@ function App() {
   // Fix 4. - useCallback
   // -----------------------------------------------------
   const onSidebarMenuClicked = useCallback((pageName: any) => {
+    visitedPages.current += 1;
     setSelectedPage(pageName);
   }, []);
 
   let whatToShow = null;
   if (isLogged) {
-    visitedPages.current += 1;
     whatToShow = (
       <>
         <div className="sidebar">

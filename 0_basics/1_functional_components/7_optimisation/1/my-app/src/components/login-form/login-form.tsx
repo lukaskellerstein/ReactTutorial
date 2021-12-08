@@ -9,17 +9,12 @@ import {
   Text,
 } from "@fluentui/react-northstar";
 import { useState } from "react";
+import { ErrorState } from "../../business/api-errors";
 import "./login-form.scss";
 
 type LoginFormProps = {
   theme: string;
   onLogin: (x: boolean) => void;
-};
-
-type ErrorState = {
-  hasError: boolean;
-  title: string;
-  message: string;
 };
 
 const LoginForm = (props: LoginFormProps) => {

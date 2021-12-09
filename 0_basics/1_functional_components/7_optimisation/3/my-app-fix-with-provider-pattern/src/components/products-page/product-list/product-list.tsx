@@ -1,6 +1,6 @@
-import { ThemeContext } from "@context/theme.context";
 import { Button, Card } from "@fluentui/react-northstar";
 import { useContext } from "react";
+import { ThemeContext } from "../../../contexts/theme.context";
 import { CarDTO } from "../../../DTOs/Car.dto";
 import "./product-list.scss";
 

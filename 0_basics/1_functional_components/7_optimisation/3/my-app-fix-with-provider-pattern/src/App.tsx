@@ -8,7 +8,7 @@ import UpcomingEventsPage from "@components/upcoming-events-page/upcoming-events
 import { memo, useCallback, useRef, useState } from "react";
 import "./App.scss";
 import { Logger } from "./business/logger";
-import { ThemeContext } from "./context/theme.context";
+import { ThemeProvider } from "./providers/theme.provider";
 
 const AppSidebarMemoized = memo(AppSidebar);
 
@@ -16,17 +16,12 @@ function App() {
   const logger = new Logger("app", "#fa6969");
 
   const [isLogged, setLogged] = useState(false);
-  const [themeState, setThemeState] = useState("green");
   const [selectedPage, setSelectedPage] = useState("products");
 
   const visitedPages = useRef(0);
 
   const onLogin = (isLogged: boolean) => {
     setLogged(isLogged);
-  };
-
-  const setTheme = (theme: string) => {
-    setThemeState(theme);
   };
 
   const onSidebarMenuClicked = useCallback((pageName: any) => {
@@ -61,7 +56,7 @@ function App() {
 
   return (
     <>
-      <ThemeContext.Provider value={{ theme: themeState, setTheme }}>
+      <ThemeProvider>
         <div className="App">
           <div className="wrapper">
             <header className="page-header">
@@ -77,7 +72,7 @@ function App() {
             </footer>
           </div>
         </div>
-      </ThemeContext.Provider>
+      </ThemeProvider>
     </>
   );
 }

@@ -1,4 +1,3 @@
-import { ThemeContext } from "@context/theme.context";
 import {
   Button,
   MenuIcon,
@@ -6,6 +5,7 @@ import {
   SettingsIcon,
 } from "@fluentui/react-northstar";
 import { useContext } from "react";
+import { ThemeContext } from "../../contexts/theme.context";
 import "./app-header.scss";
 
 type AppHeaderProps = {

@@ -8,6 +8,9 @@ type ErrorState = {
   message: string;
 };
 
+// ----------------------------------------------------------------
+// Fix 1. - custom Hook
+// ----------------------------------------------------------------
 const useErrors = () => {
   const [errorState, setErrorState] = useState<ErrorState>({
     hasError: false,

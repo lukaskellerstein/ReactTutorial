@@ -1,5 +1,5 @@
-import { ThemeContext } from "@context/theme.context";
 import { useContext } from "react";
+import { ThemeContext } from "../../contexts/theme.context";
 import "./app-footer.scss";
 
 const AppFooter = () => {

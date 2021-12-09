@@ -24,9 +24,6 @@ const LoginForm = (props: LoginFormProps) => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  // ----------------------------------------------------------------
-  // Fix 1. - custom Hook
-  // ----------------------------------------------------------------
   const { html: errorsHtml, setError, setEmptyErrors } = useErrors();
 
   const onFormSubmit = () => {

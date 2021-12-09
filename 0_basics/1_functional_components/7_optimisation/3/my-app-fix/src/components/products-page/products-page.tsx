@@ -1,18 +1,22 @@
 import { ApiError } from "@business/api-errors";
 import { Logger } from "@business/logger";
+import { ThemeContext } from "@context/theme.context";
 import { CarDTO } from "@dto/Car.dto";
 import { Text } from "@fluentui/react-northstar";
 import useErrors from "@hooks/useErrors";
-import { memo, useCallback, useEffect, useMemo, useReducer } from "react";
+import {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+} from "react";
 import ProductDetailForm from "./product-detail-form/product-detail-form";
 import ProductList from "./product-list/product-list";
 import "./products-page.scss";
 import { productsReducer } from "./products-reducer";
 import { mapProducts } from "./products.mapping";
-
-type ProductPageProps = {
-  theme: string;
-};
 
 const ProductListMemoized = memo(ProductList);
 const ProductDetailFormMemoized = memo(ProductDetailForm);
@@ -22,21 +26,17 @@ const initialState = {
   products: [],
 };
 
-const ProductsPage = (props: ProductPageProps) => {
+const ProductsPage = () => {
   const logger = new Logger("products-page", "#a366ff");
   logger.logComponent("start");
 
   const firebaseAPIUrl =
     "https://react-test-backend-30392-default-rtdb.europe-west1.firebasedatabase.app/products.json";
 
-  // ----------------------------------------------------------------
-  // Fix 2. - useReducer
-  // ----------------------------------------------------------------
+  const { theme } = useContext(ThemeContext);
+
   const [state, dispatch] = useReducer(productsReducer, initialState);
 
-  // ----------------------------------------------------------------
-  // Fix 1. - custom Hook
-  // ----------------------------------------------------------------
   const { html: errorsHtml, setError, setEmptyErrors } = useErrors();
 
   const getProducts = async () => {
@@ -123,7 +123,7 @@ const ProductsPage = (props: ProductPageProps) => {
 
   logger.logComponent("ends");
   return (
-    <div className={props.theme + "-pp"}>
+    <div className={theme + "-pp"}>
       {errorsHtml}
 
       <TextMemoized
@@ -132,11 +132,7 @@ const ProductsPage = (props: ProductPageProps) => {
       />
 
       <ProductDetailFormMemoized onAdd={addProduct} />
-      <ProductListMemoized
-        items={state.products}
-        onRemove={removeProduct}
-        theme={props.theme}
-      />
+      <ProductListMemoized items={state.products} onRemove={removeProduct} />
     </div>
   );
 };

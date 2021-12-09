@@ -20,7 +20,7 @@
       "@business/*": ["./src/business/*"],
       "@dto/*": ["./src/DTOs/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@context/*": ["./src/context/*"]
+      "@context/*": ["./src/contexts/*"]
     }
   },
   "exclude": ["dist", "node_modules"],

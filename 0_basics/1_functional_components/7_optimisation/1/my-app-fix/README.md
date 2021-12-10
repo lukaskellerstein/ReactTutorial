@@ -33,22 +33,26 @@ Fluent UI
 
     - Fix 3. - conditional rendering
 
-4.  After theme color is changed, sidebar is re-rendered.
-
-    ![sidebar-re-render](/images/problem-3.png)
-
-    Solution:
-
-    - Fix 4. - Memoization of Sidebar
-    - Fix 4. - useCallback
-
-5.  After theme color is changed, ProductList of Products page is re-render.
+4.  After theme color is changed, ProductList of Products page is re-render.
 
     ![product-list-re-render](/images/problem-4.png)
 
     Solution:
 
-    - Fix 5. - Memoization
+    - Fix 4. - Memoization (Fixed rerendering)
+    - => Because props is state !!!!
+    - => If props is [] (empty array), each rerender will trigger rerender also for product-list !!!! => need to use useMemo()
+
+5.  After theme color is changed, Text of Products page is re-render.
+
+    - and method calculateAvgHP is called on theme color
+
+    ![product-page-text-re-render](/images/problem-6.png)
+
+    Solution:
+
+    - Fix 5. - Memoization (Fixed rerendering)
+    - Fix 5. - useMemo (Fixes runing function after each rerender)
 
 6.  After theme color is changed, ProductDetailForm of Products page is re-render.
 
@@ -56,19 +60,17 @@ Fluent UI
 
     Solution:
 
-    - Fix 6. - Memoization
+    - Fix 6. - Memoization (Fixed rerendering)
     - Fix 6. - useCallback
 
-7.  After theme color is changed, Text of Products page is re-render.
+7.  After theme color is changed, sidebar is re-rendered.
 
-    - and method calculateAvgHP is called on theme color
-
-    ![product-detail-form-re-render](/images/problem-6.png)
+    ![sidebar-re-render](/images/problem-3.png)
 
     Solution:
 
-    - Fix 7. - Memoization
-    - Fix 7. - useMemo
+    - Fix 7. - Memoization (Fixed rerendering)
+    - Fix 7. - useCallback
 
 8.  Visited pages does not work.
 

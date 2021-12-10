@@ -10,7 +10,7 @@ import "./App.scss";
 import { Logger } from "./business/logger";
 
 // -----------------------------------------------------
-// Fix 4. - Memoization of Sidebar
+// Fix 7. - Memoization of Sidebar
 // -----------------------------------------------------
 const AppSidebarMemoized = memo(AppSidebar);
 
@@ -21,6 +21,9 @@ function App() {
   const [themeState, setThemeState] = useState("green");
   const [selectedPage, setSelectedPage] = useState("products");
 
+  // -----------------------------------------------------
+  // Fix 8. - useRef
+  // -----------------------------------------------------
   const visitedPages = useRef(0);
 
   const onLogin = (isLogged: boolean) => {
@@ -32,7 +35,7 @@ function App() {
   };
 
   // -----------------------------------------------------
-  // Fix 4. - useCallback
+  // Fix 7. - useCallback
   // -----------------------------------------------------
   const onSidebarMenuClicked = useCallback((pageName: any) => {
     visitedPages.current += 1;

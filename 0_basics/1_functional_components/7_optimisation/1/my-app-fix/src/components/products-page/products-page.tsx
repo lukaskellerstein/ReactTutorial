@@ -15,7 +15,7 @@ type ProductPageProps = {
 };
 
 // -----------------------------------------------------
-// Fix 5. - Memoization
+// Fix 4. - Memoization
 // -----------------------------------------------------
 const ProductListMemoized = memo(ProductList);
 // -----------------------------------------------------
@@ -23,7 +23,7 @@ const ProductListMemoized = memo(ProductList);
 // -----------------------------------------------------
 const ProductDetailFormMemoized = memo(ProductDetailForm);
 // -----------------------------------------------------
-// Fix 7. - Memoization
+// Fix 5. - Memoization
 // -----------------------------------------------------
 const TextMemoized = memo(Text);
 
@@ -97,7 +97,7 @@ const ProductsPage = (props: ProductPageProps) => {
   }, []);
 
   // -----------------------------------------------------
-  // Fix 7. - useMemo
+  // Fix 5. - useMemo
   // -----------------------------------------------------
   const calculateAvgHP = useMemo((): string => {
     logger.logComponent("calculateAvgHP", products);

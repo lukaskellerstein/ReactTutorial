@@ -16,3 +16,8 @@ Example 2:
 
 - Custom hooks
 - useReducer
+
+Example 3:
+
+- Context
+- Context provider

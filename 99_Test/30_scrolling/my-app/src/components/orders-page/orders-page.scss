@@ -1,0 +1,21 @@
+.orders-page-wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lorem-ipsum-div {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 300px;
+  width: 150px;
+}
+
+.data-wrapper {
+  overflow-x: hidden;
+  overflow-y: auto;
+  height: 500px;
+}
+
+.data-item {
+  border: 1px solid lightblue;
+}

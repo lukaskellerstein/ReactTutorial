@@ -1,0 +1,57 @@
+.login-form {
+  display: flex;
+  justify-content: center;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+}
+
+.wrapper {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+.page-header,
+.page-footer {
+  background-color: rgb(75, 70, 74);
+  color: #fff;
+}
+
+.page-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.sidebar {
+}
+
+.page {
+  width: 100%;
+  margin: 15px;
+}
+
+.login-form {
+  width: 100%;
+}
+
+.red-theme {
+  background-color: rgb(255, 137, 137);
+}
+
+.green-theme {
+  background-color: rgb(115, 202, 64);
+}
+
+.blue-theme {
+  background-color: rgb(59, 149, 253);
+}

@@ -3,7 +3,7 @@
 CRUD web app with webpack (NO react-script)
 
 Firebase DB
-https://react-test-backend-30392-default-rtdb.europe-west1.firebasedatabase.app/
+https://react-test-backend-af7fe-default-rtdb.europe-west1.firebasedatabase.app/
 
 Fluent UI
 
@@ -28,8 +28,13 @@ Solution: Fix 1. - custom Hook
 
   a) Replace getProducts() with setProduct() with changed state
 
+- avoid re-render of ProductDetailForm
+
   b) leverage useReducer and emit Action => which will change the state in reducer
 
 ![avoid-api-recall](/images/problem-9.png)
 
-Solution: Fix 2. - useReducer
+Solution:
+
+- Fix 2. - useReducer
+- Fix 2. - remove dependency for useCallback [products/state]

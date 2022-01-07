@@ -1,12 +1,7 @@
+import { ErrorState } from "@business/api-errors";
 import ErrorModal from "@components/error-modal/error-modal";
 import { isEqual } from "lodash";
 import { useState } from "react";
-
-type ErrorState = {
-  hasError: boolean;
-  title: string;
-  message: string;
-};
 
 // ----------------------------------------------------------------
 // Fix 1. - custom Hook

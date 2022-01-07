@@ -27,7 +27,7 @@ const ProductsPage = (props: ProductPageProps) => {
   logger.logComponent("start");
 
   const firebaseAPIUrl =
-    "https://react-test-backend-30392-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+    "https://react-test-backend-af7fe-default-rtdb.europe-west1.firebasedatabase.app/products.json";
 
   // ----------------------------------------------------------------
   // Fix 2. - useReducer
@@ -59,6 +59,9 @@ const ProductsPage = (props: ProductPageProps) => {
     }
   };
 
+  // ----------------------------------------------------------------
+  // Fix 2. - remove dependency for useCallback [products/state]
+  // ----------------------------------------------------------------
   const addProduct = useCallback(async (item: CarDTO) => {
     try {
       const responseRaw = await fetch(firebaseAPIUrl, {
@@ -117,6 +120,7 @@ const ProductsPage = (props: ProductPageProps) => {
   }, [state.products]);
 
   useEffect(() => {
+    console.log("HAHAHAHA");
     logger.logEffect("with empty dependency", "call getProducts");
     getProducts();
   }, []);

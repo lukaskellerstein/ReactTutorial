@@ -23,7 +23,7 @@ const ProductsPage = (props: ProductPageProps) => {
   logger.logComponent("start");
 
   const firebaseAPIUrl =
-    "https://react-test-backend-30392-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+    "https://react-test-backend-af7fe-default-rtdb.europe-west1.firebasedatabase.app/products.json";
 
   const [products, setProducts] = useState<CarDTO[]>([]);
   const [errorState, setErrorState] = useState<ErrorState>({
@@ -81,25 +81,34 @@ const ProductsPage = (props: ProductPageProps) => {
     }
   }, []);
 
-  const removeProduct = useCallback(async (id: string) => {
-    const filteredProducts = products.filter((value) => value.id !== id);
-    try {
-      const responseRaw = await fetch(firebaseAPIUrl, {
-        method: "PUT",
-        body: JSON.stringify(filteredProducts),
-      });
-      if (!responseRaw.ok) {
-        throw new ApiError(responseRaw.status, responseRaw.statusText);
+  const removeProduct = useCallback(
+    async (id: string) => {
+      const filteredProducts = products
+        .filter((value: CarDTO) => value.id !== id)
+        .reduce((acc: any, value: CarDTO) => {
+          if (value.id) acc[value.id] = value;
+          return acc;
+        }, {});
+
+      try {
+        const responseRaw = await fetch(firebaseAPIUrl, {
+          method: "PUT",
+          body: JSON.stringify(filteredProducts),
+        });
+        if (!responseRaw.ok) {
+          throw new ApiError(responseRaw.status, responseRaw.statusText);
+        }
+        getProducts();
+      } catch (error: any) {
+        setErrorStateOptimised({
+          hasError: true,
+          title: error.message,
+          message: `${error.status} - ${error.statusText}`,
+        });
       }
-      getProducts();
-    } catch (error: any) {
-      setErrorStateOptimised({
-        hasError: true,
-        title: error.message,
-        message: `${error.status} - ${error.statusText}`,
-      });
-    }
-  }, []);
+    },
+    [products]
+  );
 
   const calculateAvgHP = useMemo((): string => {
     logger.logComponent("calculateAvgHP", products);

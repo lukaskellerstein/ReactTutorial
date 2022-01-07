@@ -3,7 +3,7 @@
 CRUD web app with webpack (NO react-script)
 
 Firebase DB
-https://react-test-backend-30392-default-rtdb.europe-west1.firebasedatabase.app/
+https://react-test-backend-af7fe-default-rtdb.europe-west1.firebasedatabase.app/
 
 Fluent UI
 
@@ -26,6 +26,8 @@ Fluent UI
 - avoid re-call API after ADD and REMOVE
 
   a) Replace getProducts() with setProduct() with changed state
+
+- avoid re-render of ProductDetailForm
 
   b) leverage useReducer and emit Action => which will change the state in reducer
 

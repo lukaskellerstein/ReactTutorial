@@ -27,7 +27,7 @@ const ProductsPage = (props: ProductPageProps) => {
   logger.logComponent("start");
 
   const firebaseAPIUrl =
-    "https://react-test-backend-30392-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+    "https://react-test-backend-af7fe-default-rtdb.europe-west1.firebasedatabase.app/products.json";
 
   const [state, dispatch] = useReducer(productsReducer, initialState);
 

@@ -26,7 +26,7 @@ class ApiError extends Error {
 
 function App() {
   const firebaseAPIUrl =
-    "https://react-test-backend-30392-default-rtdb.europe-west1.firebasedatabase.app/products.json";
+    "https://react-test-backend-af7fe-default-rtdb.europe-west1.firebasedatabase.app/products.json";
   const [isLogged, setLogged] = useState(false);
   const [products, setProducts] = useState([]);
   const [errorState, setErrorState] = useState<ErrorState>({

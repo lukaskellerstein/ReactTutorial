@@ -2,17 +2,18 @@ import { ApiError } from "@business/api-errors";
 import { Logger } from "@business/logger";
 import { CarDTO } from "@dto/Car.dto";
 import { Text } from "@fluentui/react-northstar";
-import useErrors from "@hooks/useErrors";
 import { memo, useCallback, useEffect, useMemo, useReducer } from "react";
 import ProductDetailForm from "./product-detail-form/product-detail-form";
 import ProductList from "./product-list/product-list";
 import "./products-page.scss";
 import { productsReducer } from "./products-reducer";
 import { mapProducts } from "./products.mapping";
+import { WithErrorsProps } from "@hoc/withErrors";
 
 type ProductPageProps = {
   theme: string;
-};
+} & WithErrorsProps; // <------- I don't like this
+// concrete component should not know anything about props of HOC
 
 const ProductListMemoized = memo(ProductList);
 const ProductDetailFormMemoized = memo(ProductDetailForm);
@@ -34,11 +35,6 @@ const ProductsPage = (props: ProductPageProps) => {
   // ----------------------------------------------------------------
   const [state, dispatch] = useReducer(productsReducer, initialState);
 
-  // ----------------------------------------------------------------
-  // Fix 1. - custom Hook
-  // ----------------------------------------------------------------
-  const { html: errorsHtml, setError, setEmptyErrors } = useErrors();
-
   const getProducts = async () => {
     try {
       const responseRaw = await fetch(firebaseAPIUrl);
@@ -53,9 +49,9 @@ const ProductsPage = (props: ProductPageProps) => {
 
       const cars = mapProducts(responseJSON);
       dispatch({ type: "GET", payload: cars });
-      setEmptyErrors();
+      props.setEmptyErrors(); // <------- I don't like this, concrete component shouldn't know about props of HOC
     } catch (error: any) {
-      setError(error.message, `${error.status} - ${error.statusText}`);
+      props.setError(error.message, `${error.status} - ${error.statusText}`); // <------- I don't like this, concrete component shouldn't know about props of HOC
     }
   };
 
@@ -75,7 +71,7 @@ const ProductsPage = (props: ProductPageProps) => {
 
       dispatch({ type: "ADD", payload: { ...item, id: responseJSON.name } });
     } catch (error: any) {
-      setError(error.message, `${error.status} - ${error.statusText}`);
+      props.setError(error.message, `${error.status} - ${error.statusText}`); // <------- I don't like this, concrete component shouldn't know about props of HOC
     }
   }, []);
 
@@ -98,7 +94,7 @@ const ProductsPage = (props: ProductPageProps) => {
         }
         dispatch({ type: "REMOVE", payload: id });
       } catch (error: any) {
-        setError(error.message, `${error.status} - ${error.statusText}`);
+        props.setError(error.message, `${error.status} - ${error.statusText}`); // <------- I don't like this, concrete component shouldn't know about props of HOC
       }
     },
     [state.products]
@@ -127,8 +123,6 @@ const ProductsPage = (props: ProductPageProps) => {
   logger.logComponent("ends");
   return (
     <div className={props.theme + "-pp"}>
-      {errorsHtml}
-
       <TextMemoized
         size="large"
         content={`Product average HP: ${calculateAvgHP}`}

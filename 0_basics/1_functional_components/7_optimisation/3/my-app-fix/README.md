@@ -14,6 +14,6 @@ Fluent UI
 
 ## Problems in application
 
-1. Too many props cascading for theme color => to many unecessary re-renders
+1. Too many props cascading for theme color 
 
 ![theme-re-renders](/images/problem-10.png)

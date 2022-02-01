@@ -1,0 +1,17 @@
+type Item {
+  id: String!
+  brand: String!
+  model: String!
+  HP: Int!
+}
+
+type Query {
+  list: [Item]
+  one(id: String!): Item
+}
+
+type Mutation {
+  createItem(brand: String!, model: String!, HP: Int!): Item
+  updateItem(id: String!, brand: String!, model: String!, HP: Int!): Item
+  deleteItem(id: String!): String
+}
